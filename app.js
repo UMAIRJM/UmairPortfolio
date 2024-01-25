@@ -1,3 +1,4 @@
+require("dotenv").config()
 const bodyParser = require("body-parser")
 const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
@@ -6,7 +7,7 @@ const app = express()
 const session = require("express-session")
 const MongoStore  = require("express-session-mongo")
 
-const  port = 3000
+const  port = process.env.PORT || 3000
 app.set("view engine","ejs")
 app.set("layout","./layouts/mainLayout")
 app.use(expressLayouts)
@@ -87,7 +88,7 @@ app.use("/aboutMe",aboutMeRoute)
 app.use("/feedback",feedbackRoute)
 app.use("/main",mainRoute)
 
-mongoose.connect("mongodb+srv://umairkmehmood789:umair789@cluster0.pkhdli3.mongodb.net/portfolioData?retryWrites=true&w=majority",{
+mongoose.connect(process.env.MONGO_URL,{
     useNewUrlParser:true,
     useUnifiedTopology:true,
 }).then(()=>{
