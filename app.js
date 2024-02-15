@@ -88,6 +88,9 @@ app.use("/aboutMe",aboutMeRoute)
 app.use("/feedback",feedbackRoute)
 app.use("/main",mainRoute)
 
+app.get("/",(req,res)=>{
+    res.render("landingpage")
+})
 mongoose.connect(process.env.MONGO_URL,{
     useNewUrlParser:true,
     useUnifiedTopology:true,
